@@ -14,23 +14,23 @@ typedef enum e_json_type
 	JSON_INTEGER,
 	JSON_DOUBLE,
 	JSON_BOOL
-}	t_json_type;
+}	js_type;
 
-typedef struct s_json_obj
+typedef struct js_node
 {
-	t_json_type			type;
+	js_type				type;
 	char				*key;
 	char				*string_value;
 	int					int_value;
-	struct s_json_obj	*obj_value;
-	struct s_json_obj	*array_value;
-	struct s_json_obj	*next;
-}	t_json_obj;
+	struct js_node	*obj_value;
+	struct js_node	*array_value;
+	struct js_node	*next;
+}	js_node;
 
 /*
 	@brief	Convert a json string into a json_obj and returns it.
 */
-t_json_obj	*js_convert_to_object(char *j);
+js_node	*js_convert_to_object(char *j);
 
 /***************
  * 
@@ -38,10 +38,10 @@ t_json_obj	*js_convert_to_object(char *j);
  * 
 ****************/
 
-char	*js_new_obj_attr(char *json, t_json_obj *obj);
-char	*js_new_array_attr(char *json, t_json_obj *obj);
-char	*js_new_obj(char *json, t_json_obj *obj);
-char	*js_new_array(char *json, t_json_obj *obj);
+char	*js_new_obj_attr(char *json, js_node *obj);
+char	*js_new_array_attr(char *json, js_node *obj);
+char	*js_new_obj(char *json, js_node *obj);
+char	*js_new_array(char *json, js_node *obj);
 char	*js_new_string(char *json);
 /***************
  * 
@@ -49,8 +49,8 @@ char	*js_new_string(char *json);
  * 
 ****************/
 
-t_json_obj	*js_get_value(t_json_obj *obj, char *key);
-void		js_foreach(t_json_obj *array, void (*func)(t_json_obj *item));
+js_node	*js_get_value(js_node *obj, char *key);
+void		js_foreach(js_node *array, void (*func)(js_node *item));
 
 
 /***************

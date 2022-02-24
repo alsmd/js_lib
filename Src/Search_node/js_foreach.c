@@ -2,12 +2,12 @@
 
 /*
 	@brief		execute func in each node of the array
-	@param		array (a t_json_obj that has the type JSON_ARRAY)
+	@param		array (a js_node that has the type JSON_ARRAY)
 	@param		func (pass each array's node to this function)
 */
-void	js_foreach(t_json_obj *array, void (*func)(t_json_obj *item))
+void	js_foreach(js_node *array, void (*func)(js_node *item))
 {
-	t_json_obj	*begin;
+	js_node	*begin;
 
 	begin = array->array_value;
 	while (begin)

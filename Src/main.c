@@ -1,28 +1,6 @@
 #include <js_lib.h>
 
-/***************
- * 
- * 	CREATE NODES
- * 
-****************/
-t_json_obj	*js_convert_to_object(char *j)
-{
-	char		*json;
-	t_json_obj	*obj;
-
-	json = strdup(j);
-	obj = calloc(1, sizeof(t_json_obj));
-	js_new_obj(json, obj);
-	free(json);
-	return (obj);
-}
-/***************
- * 
- * 	CREATE NODES END
- * 
-****************/
-
-void	printf_array_items(t_json_obj *item)
+void	printf_array_items(js_node *item)
 {
 	if (item->type == JSON_STRING)
 		printf("%s\n", item->string_value);
@@ -30,14 +8,11 @@ void	printf_array_items(t_json_obj *item)
 		printf("%d\n", item->int_value);
 }
 
-
 int	main(void)
 {
-	t_json_obj	obj;
+	js_node	obj;
 	
-	js_new_array("[1, 2, 3, \"name\", 5, 6]", &obj);
-
-
+	js_new_array("[1, 2, \"Hello there!\", 4, true, false]", &obj);
 	js_foreach(&obj, printf_array_items);
 	return (0);
 }

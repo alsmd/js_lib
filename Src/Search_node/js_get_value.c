@@ -1,14 +1,14 @@
 #include <js_lib.h>
 
 /*
-	@brief	Search inside the t_json_obj for the attribute that has key.
-	@param	obj (t_json_obj that is the base of the search)
+	@brief	Search inside the js_node for the attribute that has key.
+	@param	obj (js_node that is the base of the search)
 	@param	key (what attribute we want to find)
-	@return	Returns a t_json_obj that is the attribute found or 0 if not found.
+	@return	Returns a js_node that is the attribute found or 0 if not found.
 */
-t_json_obj	*js_get_value(t_json_obj *obj, char *key)
+js_node	*js_get_value(js_node *obj, char *key)
 {
-	t_json_obj	*begin;
+	js_node	*begin;
 
 	begin = obj;
 	while (begin)
